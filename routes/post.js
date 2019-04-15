@@ -27,6 +27,11 @@ function validatePostCreateForm(payload) {
     errors.createdBy = 'CreatedBy needs valid user ID.'
   }
 
+  if (!payload || !payload.price || typeof payload.price !== 'number' || payload.price < 0) {
+    isFormValid = false
+    errors.createdBy = 'Price must be positive number.'
+  }
+
   if (!isFormValid) {
     message = 'Check the form for errors.'
   }
