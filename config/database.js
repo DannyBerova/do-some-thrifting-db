@@ -6,6 +6,8 @@ var MongoClient = mongodb.MongoClient;
 
 var url = process.env.MONGODB_URI || 'mongodb://heroku_rhm2cbc6:2451323danny@ds011442.mlab.com:11442/heroku_rhm2cbc6';
 
+// var url = process.env.MONGODB_URI || 'mongodb://localhost:27017/dosomethriftingdb';
+
 mongoose.Promise = global.Promise
 
 module.exports = () => {

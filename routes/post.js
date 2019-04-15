@@ -114,7 +114,7 @@ router.post('/edit/:id', authCheck, async (req, res) => {
   const postId = req.params.id;
   const postBody = req.body;
   let postObj = postBody;
-        if (req.user.roles.indexOf('User') > -1 && req.user.id === postBody.createdBy) {
+        if (req.user.roles.indexOf('User') > -1 && req.user.username === postBody.createdBy) {
     if(!postObj.images) {
       postObj.images = ["https://www.union.edu/files/union-marketing-layer/201803/picture.jpg"];
     }

@@ -2,9 +2,9 @@
   "name": "indahood",
   "version": "1.0.0",
   "description": "InDaHood API and SPA app",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "DannyB",
