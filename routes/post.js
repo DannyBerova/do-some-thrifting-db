@@ -143,6 +143,7 @@ router.post('/edit/:id', authCheck, async (req, res) => {
 
       existingPost.title = postObj.title
       existingPost.content = postObj.content
+      existingPost.price = postObj.price
       existingPost.images = postObj.images
       existingPost.category = postObj.category
 
