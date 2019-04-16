@@ -122,7 +122,7 @@ router.get('/allByPost/:id', authCheck, (req, res) => {
 router.delete('/remove/:id', authCheck, async (req, res) => {
   const id = req.params.id;
   const creator = req.body.creator;
-  if (req.user.username === creator || req.user.roles.includes('Admin')) {
+  if (req.user.id === creator || req.user.roles.includes('Admin')) {
       Comment
       .findById(id)
       .then(async (comment) => {
@@ -160,7 +160,7 @@ router.delete('/remove/:id', authCheck, async (req, res) => {
   } else {
     return res.status(200).json({
       success: false,
-      message: 'Invalid credentials!'
+      message: `Invalid credentials! ${req.user.id} ${req.body.creator}`
     })
   }
 })
