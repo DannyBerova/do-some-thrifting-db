@@ -160,7 +160,7 @@ router.delete('/remove/:id', authCheck, async (req, res) => {
   } else {
     return res.status(200).json({
       success: false,
-      message: `Invalid credentials! ${req.user.id} ${req.body.creator}`
+      message: `Invalid credentials! ${req.user.id} ${req.body} ${req.params} ${req}`
     })
   }
 })
