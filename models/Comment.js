@@ -14,6 +14,10 @@ const commentSchema = new Schema({
         type: Schema.Types.String,
         required: true,
     },
+    creatorUsername: {
+        type: Schema.Types.String,
+        required: true,
+    },
     createdBy: {
         type: Schema.Types.String,
         required: true,

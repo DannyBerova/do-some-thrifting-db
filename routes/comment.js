@@ -21,6 +21,11 @@ function validateCommentCreateForm(payload) {
     errors.createdBy = 'CreatedBy needs valid user ID.'
   }
 
+  if (!payload || !payload.creatorUsername || typeof payload.creatorUsername !== 'string') {
+    isFormValid = false
+    errors.creatorUsername = 'CreatorUsername needs valid username.'
+  }
+
   if (!payload || !payload.postId || typeof payload.postId !== 'string') {
     isFormValid = false
     errors.createdBy = 'PostId needs valid post ID.'
@@ -65,6 +70,7 @@ router.post('/create', authCheck, async (req, res) => {
     
     let postCommented = await Post.findById(commentObj.postId);
     commentToCreate.postId = postCommented._id;
+    commentToCreate.createdOn = Date.now();
     
     Comment
     .create(commentToCreate)
