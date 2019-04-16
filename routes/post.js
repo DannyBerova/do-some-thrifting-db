@@ -325,9 +325,9 @@ router.post('/star/:id', authCheck, async (req, res) => {
 
 })
 
-router.delete('/remove/:id', authCheck, async (req, res) => {
+router.delete('/remove/:id/:creator', authCheck, async (req, res) => {
   const id = req.params.id;
-  const creator = req.body.creatorId;
+  const creator = req.params.creator;
   var user = await User.findById(creator);
   if (req.user.id === creator || req.user.roles.indexOf('Admin') > -1) {
     Post

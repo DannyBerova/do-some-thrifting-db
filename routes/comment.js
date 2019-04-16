@@ -119,9 +119,9 @@ router.get('/allByPost/:id', authCheck, (req, res) => {
     })
 })
 
-router.delete('/remove/:id', authCheck, async (req, res) => {
+router.delete('/remove/:id/:creator', authCheck, async (req, res) => {
   const id = req.params.id;
-  const creator = req.body.creator;
+  const creator = req.params.creator;
   if (req.user.id === creator || req.user.roles.includes('Admin')) {
       Comment
       .findById(id)
