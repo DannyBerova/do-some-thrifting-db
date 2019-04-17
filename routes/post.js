@@ -183,6 +183,63 @@ router.post('/edit/:id', authCheck, async (req, res) => {
   }
 })
 
+router.post('/status/:id', authCheck, async (req, res) => {
+  const postId = req.params.id;
+  const postBody = req.body;
+  let postObj = postBody; // status, createdBy
+
+  if (!(postObj.status === "onstock" 
+    || postObj.status === "reserved" 
+    || postObj.status === "sold") 
+    || !postObj.createdBy) {
+    return res.status(200).json({
+      success: false,
+      message: 'Not valid data',
+    })
+  }
+
+  if (req.user.roles.indexOf('User') > -1 && req.user.username === postBody.createdBy) {
+    try {
+      let existingPost = await Post.findById(postId)
+      
+      existingPost.status = postObj.status
+
+      existingPost
+        .save()
+        .then(editedPost => {
+          res.status(200).json({
+            success: true,
+            message: `Status edited successfully to [${postObj.status}].`,
+            data: editedPost
+          })
+        })
+        .catch((err) => {
+          console.log(err)
+          let message = 'Something went wrong :( Check the form for errors.'
+          if (err.code === 11000) {
+            message = 'Post with the given name already exists.'
+          }
+          return res.status(200).json({
+            success: false,
+            message: message
+          })
+        })
+    } catch (error) {
+      console.log(err)
+      const message = 'Something went wrong :( Check the form for errors.'
+      return res.status(200).json({
+        success: false,
+        message: message
+      })
+    }
+  } else {
+    return res.status(200).json({
+      success: false,
+      message: 'Invalid credentials!'
+    })
+  }
+})
+
 router.get('/all', (req, res) => {
   Post
     .find()
