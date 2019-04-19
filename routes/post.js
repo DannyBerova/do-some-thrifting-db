@@ -336,10 +336,10 @@ router.post('/star/:id', authCheck, async (req, res) => {
       if (stars.includes(userId)) {
         const index = stars.indexOf(req.user.id)
         stars.splice(index, 1)
-        message = 'Post unstar successfully.'
+        message = 'Removed like to post successfully.'
       } else {
         stars.push(userId)
-        message = 'Post recieved star successfully.'    
+        message = 'Post recieved like successfully.'    
       }
         post.stars = stars
         post
