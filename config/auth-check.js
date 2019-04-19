@@ -19,7 +19,9 @@ module.exports = (req, res, next) => {
       .findOne({ _id: userId })
       .then(user => {
         if (!user) {
-          return res.status(401).end()
+          return res.status(401).end({
+            message: "Session expired!"
+          });
         }
 
         req.user = user
