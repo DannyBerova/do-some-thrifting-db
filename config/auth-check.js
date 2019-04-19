@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
   return jwt.verify(token.toString(), 's0m3 r4nd0m str1ng', (err, decoded) => {
     if (err) {
       return res.status(401).end({
-        message: "Session expired!"
+        errmess: "Session expired!"
       })
     }
     
@@ -22,7 +22,7 @@ module.exports = (req, res, next) => {
       .then(user => {
         if (!user) {
           return res.status(401).end({
-            message: "No such user!"
+            errmess: "No such user!"
           });
         }
 
