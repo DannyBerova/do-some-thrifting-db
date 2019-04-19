@@ -11,7 +11,9 @@ module.exports = (req, res, next) => {
   // decode the token using a secret key-phrase
   return jwt.verify(token.toString(), 's0m3 r4nd0m str1ng', (err, decoded) => {
     if (err) {
-      return res.status(401).end()
+      return res.status(401).end({
+        message: "Session expired!"
+      })
     }
     
     const userId = decoded.userId
@@ -20,7 +22,7 @@ module.exports = (req, res, next) => {
       .then(user => {
         if (!user) {
           return res.status(401).end({
-            message: "Session expired!"
+            message: "No such user!"
           });
         }
 
