@@ -117,7 +117,7 @@ router.post('/register', (req, res, next) => {
           userId: user._id.toString()
         }
         , 's0m3 r4nd0m str1ng'
-        , { expiresIn: '24h' });
+        , { expiresIn: 120 });
     
          res.status(200).json(
            { 
@@ -183,7 +183,7 @@ router.post('/login', (req, res, next) => {
       userId: user._id.toString()
     }
     , 's0m3 r4nd0m str1ng'
-    , { expiresIn: '24h' });
+    , { expiresIn: 120 });
 
      res.status(200).json(
        { 
